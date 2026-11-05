@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Habit Tracker</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background-color: #1a1a2e;
+      color: #eaeaea;
+      min-height: 100vh;
+      padding: 2rem 1rem;
+    }
+
+    .container {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .card {
+      background: #16213e;
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+      border: 1px solid #2a2a4a;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    header h1 {
+      font-size: 1.8rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+
+    header h1::before {
+      content: "🔥";
+    }
+
+    .add-habit-form {
+      display: flex;
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .add-habit-form input {
+      flex: 1;
+      padding: 0.75rem 1rem;
+      border: 2px solid #2a2a4a;
+      border-radius: 8px;
+      background: #0f3460;
+      color: #eaeaea;
+      font-family: inherit;
+      font-size: 1rem;
+      outline: none;
+      transition: border-color 0.2s ease;
+    }
+
+    .add-habit-form input:focus {
+      border-color: #e94560;
+    }
+
+    .add-habit-form input::placeholder {
+      color: #a0a0a0;
+    }
+
+    .add-habit-form button {
+      padding: 0.75rem 1.5rem;
+      background: #e94560;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.2s ease, background-color 0.2s ease;
+    }
+
+    .add-habit-form button:hover {
+      background: #d63850;
+      transform: scale(1.02);
+    }
+
+    .progress-bar-container {
+      margin-bottom: 1.5rem;
+      padding: 1rem;
+      background: #0f3460;
+      border-radius: 10px;
+    }
+
+    .progress-bar-label {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.5rem;
+      font-size: 0.9rem;
+    }
+
+    .progress-bar-label span:first-child {
+      color: #a0a0a0;
+    }
+
+    .progress-bar {
+      height: 12px;
+      background: #16213e;
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      background: #e94560;
+      border-radius: 6px;
+      transition: width 0.3s ease, background-color 0.3s ease;
+    }
+
+    .progress-bar-fill.warning {
+      background: #f39c12;
+    }
+
+    .progress-bar-fill.complete {
+      background: #00d9a5;
+    }
+
+    .parabens {
+      color: #00d9a5;
+      font-weight: 700;
+      animation: pulse 1s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.6; }
+    }
+
+    .habit-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .habit-card {
+      background: #0f3460;
+      border-radius: 10px;
+      padding: 1.25rem;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .habit-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    .habit-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+    }
+
+    .habit-name {
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      padding: 0.25rem 0.5rem;
+      border-radius: 4px;
+      transition: background-color 0.2s ease;
+    }
+
+    .habit-name:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .habit-name-input {
+      font-size: 1.1rem;
+      font-weight: 600;
+      font-family: inherit;
+      background: #16213e;
+      color: #eaeaea;
+      border: 2px solid #e94560;
+      border-radius: 4px;
+      padding: 0.25rem 0.5rem;
+      outline: none;
+    }
+
+    .habit-streak {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: #00d9a5;
+    }
+
+    .habit-streak.high-streak {
+      text-shadow: 0 0 10px rgba(0, 217, 165, 0.5);
+    }
+
+    .delete-btn {
+      background: transparent;
+      border: none;
+      color: #a0a0a0;
+      font-size: 1.2rem;
+      cursor: pointer;
+      padding: 0.25rem 0.5rem;
+      border-radius: 4px;
+      opacity: 0;
+      transition: opacity 0.2s ease, color 0.2s ease, background-color 0.2s ease;
+    }
+
+    .habit-card:hover .delete-btn {
+      opacity: 1;
+    }
+
+    .delete-btn:hover {
+      color: #e94560;
+      background: rgba(233, 69, 96, 0.1);
+    }
+
+    .days-container {
+      display: flex;
+      justify-content: space-between;
+      gap: 0.5rem;
+    }
+
+    .day-column {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .day-label {
+      font-size: 0.7rem;
+      color: #a0a0a0;
+      text-transform: uppercase;
+    }
+
+    .day-checkbox {
+      width: 32px;
+      height: 32px;
+      border-radius: 6px;
+      border: 2px solid #2a2a4a;
+      background: #16213e;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+    }
+
+    .day-checkbox:hover {
+      border-color: #e94560;
+    }
+
+    .day-checkbox.checked {
+      background: #00d9a5;
+      border-color: #00d9a5;
+    }
+
+    .day-checkbox.checked::after {
+      content: "✓";
+      color: #1a1a2e;
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 2rem;
+      color: #a0a0a0;
+    }
+
+    .empty-state p {
+      font-size: 1.1rem;
+    }
+
+    .footer {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid #2a2a4a;
+    }
+
+    .footer button {
+      padding: 0.6rem 1.25rem;
+      background: transparent;
+      color: #a0a0a0;
+      border: 2px solid #2a2a4a;
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .footer button:hover {
+      border-color: #e94560;
+      color: #e94560;
+    }
+
+    #importInput {
+      display: none;
+    }
+
+    .toast {
+      position: fixed;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: #16213e;
+      color: #eaeaea;
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      border: 1px solid #2a2a4a;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+      opacity: 0;
+      transition: all 0.3s ease;
+      z-index: 1000;
+    }
+
+    .toast.show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
+
+    .toast.error {
+      border-color: #e94560;
+    }
+
+    .toast.success {
+      border-color: #00d9a5;
+    }
+
+    @media (max-width: 500px) {
+      .card {
+        padding: 1.25rem;
+      }
+
+      .add-habit-form {
+        flex-direction: column;
+      }
+
+      .days-container {
+        gap: 0.25rem;
+      }
+
+      .day-checkbox {
+        width: 28px;
+        height: 28px;
+      }
+
+      .footer {
+        flex-direction: column;
+      }
+
+      .footer button {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="card">
+      <header>
+        <h1>Habit Tracker</h1>
+      </header>
+
+      <form class="add-habit-form" id="addHabitForm">
+        <input type="text" id="habitInput" placeholder="Novo hábito..." autocomplete="off">
+        <button type="submit">Adicionar</button>
+      </form>
+
+      <div class="progress-bar-container" id="progressBarContainer" style="display: none;">
+        <div class="progress-bar-label">
+          <span>Progresso de hoje</span>
+          <span id="progressText">0%</span>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-bar-fill" id="progressBarFill" style="width: 0%"></div>
+        </div>
+      </div>
+
+      <div class="habit-list" id="habitList"></div>
+
+      <div class="empty-state" id="emptyState">
+        <p>Nenhum hábito cadastrado ainda. Comece adicionando um!</p>
+      </div>
+
+      <footer class="footer">
+        <button id="exportBtn">📥 Exportar CSV</button>
+        <button id="importBtn">📤 Importar CSV</button>
+        <input type="file" id="importInput" accept=".csv">
+      </footer>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    const STORAGE_KEY = 'habitTrackerData';
+    let habits = [];
+
+    // Initialize
+    document.addEventListener('DOMContentLoaded', () => {
+      loadFromStorage();
+      renderHabits();
+      setupEventListeners();
+    });
+
+    function loadFromStorage() {
+      try {
+        const data = localStorage.getItem(STORAGE_KEY);
+        if (data) {
+          habits = JSON.parse(data);
+        }
+      } catch (e) {
+        showToast('Erro ao carregar dados do navegador', 'error');
+      }
+    }
+
+    function saveToStorage() {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(habits));
+      } catch (e) {
+        showToast('Erro ao salvar dados', 'error');
+      }
+    }
+
+    function generateId() {
+      return Date.now().toString(36) + Math.random().toString(36).substr(2);
+    }
+
+    function getPast7Days() {
+      const days = [];
+      for (let i = 6; i >= 0; i--) {
+        const date = new Date();
+        date.setDate(date.getDate() - i);
+        days.push(formatDate(date));
+      }
+      return days;
+    }
+
+    function formatDate(date) {
+      return date.toISOString().split('T')[0];
+    }
+
+    function getDayLabel(dateStr) {
+      const date = new Date(dateStr + 'T00:00:00');
+      const days = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'];
+      return days[date.getDay()];
+    }
+
+    function calculateStreak(completions) {
+      const sortedDates = [...completions].sort().reverse();
+      if (sortedDates.length === 0) return 0;
+
+      const today = formatDate(new Date());
+      const yesterday = formatDate(new Date(Date.now() - 86400000));
+
+      let streak = 0;
+      let currentDate = sortedDates.includes(today) ? today : yesterday;
+
+      for (const date of sortedDates) {
+        if (date === currentDate) {
+          streak++;
+          const prevDate = new Date(currentDate + 'T00:00:00');
+          prevDate.setDate(prevDate.getDate() - 1);
+          currentDate = formatDate(prevDate);
+        } else if (date < currentDate) {
+          break;
+        }
+      }
+
+      return streak;
+    }
+
+    function addHabit(name) {
+      const trimmedName = name.trim();
+      if (!trimmedName) {
+        showToast('Digite um nome para o hábito', 'error');
+        return false;
+      }
+
+      habits.push({
+        id: generateId(),
+        name: trimmedName,
+        completions: []
+      });
+
+      saveToStorage();
+      renderHabits();
+      showToast('Hábito adicionado!', 'success');
+      return true;
+    }
+
+    function deleteHabit(id) {
+      habits = habits.filter(h => h.id !== id);
+      saveToStorage();
+      renderHabits();
+      showToast('Hábito removido', 'success');
+    }
+
+    function toggleCompletion(habitId, date) {
+      const habit = habits.find(h => h.id === habitId);
+      if (!habit) return;
+
+      const index = habit.completions.indexOf(date);
+      if (index > -1) {
+        habit.completions.splice(index, 1);
+      } else {
+        habit.completions.push(date);
+      }
+
+      saveToStorage();
+      renderHabits();
+    }
+
+    function updateHabitName(habitId, newName) {
+      const trimmedName = newName.trim();
+      if (!trimmedName) {
+        showToast('O nome não pode estar vazio', 'error');
+        return;
+      }
+
+      const habit = habits.find(h => h.id === habitId);
+      if (habit) {
+        habit.name = trimmedName;
+        saveToStorage();
+        renderHabits();
+      }
+    }
+
+    function makeNameEditable(habitId, element) {
+      const habit = habits.find(h => h.id === habitId);
+      if (!habit) return;
+
+      const input = document.createElement('input');
+      input.type = 'text';
+      input.className = 'habit-name-input';
+      input.value = habit.name;
+
+      element.replaceWith(input);
+      input.focus();
+      input.select();
+
+      const saveName = () => {
+        updateHabitName(habitId, input.value);
+      };
+
+      input.addEventListener('blur', saveName);
+      input.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          saveName();
+        } else if (e.key === 'Escape') {
+          renderHabits();
+        }
+      });
+    }
+
+    function renderHabits() {
+      const habitList = document.getElementById('habitList');
+      const emptyState = document.getElementById('emptyState');
+      const progressContainer = document.getElementById('progressBarContainer');
+      const past7Days = getPast7Days();
+
+      // Update progress bar
+      updateProgressBar(progressContainer);
+
+      if (habits.length === 0) {
+        habitList.innerHTML = '';
+        emptyState.style.display = 'block';
+        progressContainer.style.display = 'none';
+        return;
+      }
+
+      emptyState.style.display = 'none';
+      progressContainer.style.display = 'block';
+
+      habitList.innerHTML = habits.map(habit => {
+        const streak = calculateStreak(habit.completions);
+        const streakClass = streak >= 7 ? 'high-streak' : '';
+
+        return `
+          <div class="habit-card" data-id="${habit.id}">
+            <div class="habit-header">
+              <span class="habit-name" ondblclick="makeNameEditable('${habit.id}', this)">${escapeHtml(habit.name)}</span>
+              <span class="habit-streak ${streakClass}">🔥 ${streak}</span>
+              <button class="delete-btn" onclick="deleteHabit('${habit.id}')" title="Excluir">✕</button>
+            </div>
+            <div class="days-container">
+              ${past7Days.map(date => {
+                const isChecked = habit.completions.includes(date);
+                return `
+                  <div class="day-column">
+                    <span class="day-label">${getDayLabel(date)}</span>
+                    <div class="day-checkbox ${isChecked ? 'checked' : ''}" 
+                         onclick="toggleCompletion('${habit.id}', '${date}')"
+                         title="${date}"></div>
+                  </div>
+                `;
+              }).join('')}
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function escapeHtml(text) {
+      const div = document.createElement('div');
+      div.textContent = text;
+      return div.innerHTML;
+    }
+
+    function updateProgressBar(container) {
+      if (habits.length === 0) {
+        container.style.display = 'none';
+        return;
+      }
+
+      const today = formatDate(new Date());
+      const completedToday = habits.filter(h => h.completions.includes(today)).length;
+      const totalHabits = habits.length;
+      const percentage = Math.round((completedToday / totalHabits) * 100);
+
+      const progressFill = document.getElementById('progressBarFill');
+      const progressText = document.getElementById('progressText');
+
+      progressFill.style.width = percentage + '%';
+      progressFill.className = 'progress-bar-fill';
+
+      if (percentage === 100) {
+        progressFill.classList.add('complete');
+        progressText.innerHTML = '100% <span class="parabens">🎉 Parabéns!</span>';
+      } else if (percentage >= 70) {
+        progressFill.classList.add('warning');
+        progressText.textContent = percentage + '%';
+      } else {
+        progressText.textContent = percentage + '%';
+      }
+    }
+
+    function exportToCSV() {
+      if (habits.length === 0) {
+        showToast('Nenhum hábito para exportar', 'error');
+        return;
+      }
+
+      let csv = 'Hábito,Datas de Conclusão\n';
+
+      habits.forEach(habit => {
+        const dates = habit.completions.join('; ');
+        const row = `"${habit.name.replace(/"/g, '""')}","${dates}"`;
+        csv += row + '\n';
+      });
+
+      const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = 'habitos_export.csv';
+      link.click();
+      URL.revokeObjectURL(link.href);
+
+      showToast('Exportado com sucesso!', 'success');
+    }
+
+    function importFromCSV(file) {
+      const reader = new FileReader();
+
+      reader.onload = (e) => {
+        try {
+          const text = e.target.result;
+          const lines = text.split('\n').filter(line => line.trim());
+
+          if (lines.length < 2) {
+            showToast('Arquivo CSV vazio ou inválido', 'error');
+            return;
+          }
+
+          let importedCount = 0;
+
+          for (let i = 1; i < lines.length; i++) {
+            const line = lines[i].trim();
+            if (!line) continue;
+
+            // Parse CSV line handling quoted values
+            const match = line.match(/^"([^"]*(?:""[^"]*)*)"(?:,|$)/);
+            if (!match) continue;
+
+            const name = match[1].replace(/""/g, '"').trim();
+            if (!name) continue;
+
+            let completions = [];
+            const remaining = line.slice(match[0].length);
+            if (remaining.trim()) {
+              const datesMatch = remaining.match(/^,"([^"]*)"/);
+              if (datesMatch && datesMatch[1]) {
+                completions = datesMatch[1].split(';').map(d => d.trim()).filter(d => d);
+              }
+            }
+
+            // Check if habit exists, merge completions
+            const existingHabit = habits.find(h => h.name.toLowerCase() === name.toLowerCase());
+            if (existingHabit) {
+              completions.forEach(date => {
+                if (!existingHabit.completions.includes(date)) {
+                  existingHabit.completions.push(date);
+                }
+              });
+            } else {
+              habits.push({
+                id: generateId(),
+                name: name,
+                completions: completions
+              });
+              importedCount++;
+            }
+          }
+
+          saveToStorage();
+          renderHabits();
+          showToast(`${importedCount} hábito(s) importado(s)!`, 'success');
+
+        } catch (err) {
+          showToast('Erro ao processar arquivo CSV', 'error');
+          console.error(err);
+        }
+      };
+
+      reader.onerror = () => {
+        showToast('Erro ao ler arquivo', 'error');
+      };
+
+      reader.readAsText(file);
+    }
+
+    function showToast(message, type = '') {
+      const toast = document.getElementById('toast');
+      toast.textContent = message;
+      toast.className = 'toast ' + type;
+
+      // Trigger reflow for animation
+      void toast.offsetWidth;
+      toast.classList.add('show');
+
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 3000);
+    }
+
+    function setupEventListeners() {
+      const form = document.getElementById('addHabitForm');
+      const input = document.getElementById('habitInput');
+      const exportBtn = document.getElementById('exportBtn');
+      const importBtn = document.getElementById('importBtn');
+      const importInput = document.getElementById('importInput');
+
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        if (addHabit(input.value)) {
+          input.value = '';
+        }
+      });
+
+      exportBtn.addEventListener('click', exportToCSV);
+
+      importBtn.addEventListener('click', () => {
+        importInput.click();
+      });
+
+      importInput.addEventListener('change', (e) => {
+        if (e.target.files.length > 0) {
+          importFromCSV(e.target.files[0]);
+          e.target.value = '';
+        }
+      });
+    }
+  </script>
+</body>
+</html>
