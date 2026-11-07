@@ -43,4 +43,4 @@ O arquivo [SPEC.md](SPEC.md) registra o objetivo do aplicativo, a estrutura da i
 - [Documentação oficial do Kiro](https://kiro.dev/docs/)
 - [Specs — documentação do Kiro](https://kiro.dev/docs/specs/)
 - [Spec-Driven Development — Microsoft for Developers](https://developer.microsoft.com/blog/spec-driven-development-ai-native-engineering/)
-- materiais-de-apoio.md
+
