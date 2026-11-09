@@ -1,0 +1,210 @@
+{
+  "pbtResults": {},
+  "executionHistory": {
+    "1.1 Add the tab bar and wrap the existing weekly UI in a `#weekly-view` section": [
+      {
+        "executionId": "7cd9f8cc-c76b-4a73-b232-ab0944cfca05",
+        "chatSessionId": "sess_18ff2d5b-0767-4a31-a84e-8fcbcbdea271",
+        "timestamp": 1794153562567
+      },
+      {
+        "executionId": "7cd9f8cc-c76b-4a73-b232-ab0944cfca05",
+        "chatSessionId": "sess_18ff2d5b-0767-4a31-a84e-8fcbcbdea271",
+        "timestamp": 1794153573318
+      },
+      {
+        "executionId": "7cd9f8cc-c76b-4a73-b232-ab0944cfca05",
+        "chatSessionId": "sess_18ff2d5b-0767-4a31-a84e-8fcbcbdea271",
+        "timestamp": 1794153644992
+      }
+    ],
+    "1.2 Add the `#monthly-view` section with month navigation and the monthly grid table": [
+      {
+        "executionId": "7cd9f8cc-c76b-4a73-b232-ab0944cfca05",
+        "chatSessionId": "sess_18ff2d5b-0767-4a31-a84e-8fcbcbdea271",
+        "timestamp": 1794153562906
+      },
+      {
+        "executionId": "7cd9f8cc-c76b-4a73-b232-ab0944cfca05",
+        "chatSessionId": "sess_18ff2d5b-0767-4a31-a84e-8fcbcbdea271",
+        "timestamp": 1794153653217
+      },
+      {
+        "executionId": "7cd9f8cc-c76b-4a73-b232-ab0944cfca05",
+        "chatSessionId": "sess_18ff2d5b-0767-4a31-a84e-8fcbcbdea271",
+        "timestamp": 1794154040095
+      }
+    ],
+    "2.1 Add the `.hidden` utility and tab bar styles": [
+      {
+        "executionId": "7cd9f8cc-c76b-4a73-b232-ab0944cfca05",
+        "chatSessionId": "sess_18ff2d5b-0767-4a31-a84e-8fcbcbdea271",
+        "timestamp": 1794153563087
+      },
+      {
+        "executionId": "7cd9f8cc-c76b-4a73-b232-ab0944cfca05",
+        "chatSessionId": "sess_18ff2d5b-0767-4a31-a84e-8fcbcbdea271",
+        "timestamp": 1794153573083
+      },
+      {
+        "executionId": "7cd9f8cc-c76b-4a73-b232-ab0944cfca05",
+        "chatSessionId": "sess_18ff2d5b-0767-4a31-a84e-8fcbcbdea271",
+        "timestamp": 1794153644786
+      }
+    ],
+    "2.2 Add month navigation, monthly table, dot, and today-column styles": [
+      {
+        "executionId": "7cd9f8cc-c76b-4a73-b232-ab0944cfca05",
+        "chatSessionId": "sess_18ff2d5b-0767-4a31-a84e-8fcbcbdea271",
+        "timestamp": 1794153563196
+      },
+      {
+        "executionId": "7cd9f8cc-c76b-4a73-b232-ab0944cfca05",
+        "chatSessionId": "sess_18ff2d5b-0767-4a31-a84e-8fcbcbdea271",
+        "timestamp": 1794153653063
+      },
+      {
+        "executionId": "7cd9f8cc-c76b-4a73-b232-ab0944cfca05",
+        "chatSessionId": "sess_18ff2d5b-0767-4a31-a84e-8fcbcbdea271",
+        "timestamp": 1794154040160
+      }
+    ],
+    "3.1 Add module-level variables and the `MONTH_NAMES` constant": [
+      {
+        "executionId": "7cd9f8cc-c76b-4a73-b232-ab0944cfca05",
+        "chatSessionId": "sess_18ff2d5b-0767-4a31-a84e-8fcbcbdea271",
+        "timestamp": 1794153563482
+      },
+      {
+        "executionId": "7cd9f8cc-c76b-4a73-b232-ab0944cfca05",
+        "chatSessionId": "sess_18ff2d5b-0767-4a31-a84e-8fcbcbdea271",
+        "timestamp": 1794153573414
+      },
+      {
+        "executionId": "7cd9f8cc-c76b-4a73-b232-ab0944cfca05",
+        "chatSessionId": "sess_18ff2d5b-0767-4a31-a84e-8fcbcbdea271",
+        "timestamp": 1794153645116
+      }
+    ],
+    "3.2 Add the `daysInMonth` and `makeDot` helper functions": [
+      {
+        "executionId": "7cd9f8cc-c76b-4a73-b232-ab0944cfca05",
+        "chatSessionId": "sess_18ff2d5b-0767-4a31-a84e-8fcbcbdea271",
+        "timestamp": 1794153563613
+      },
+      {
+        "executionId": "7cd9f8cc-c76b-4a73-b232-ab0944cfca05",
+        "chatSessionId": "sess_18ff2d5b-0767-4a31-a84e-8fcbcbdea271",
+        "timestamp": 1794153653294
+      },
+      {
+        "executionId": "7cd9f8cc-c76b-4a73-b232-ab0944cfca05",
+        "chatSessionId": "sess_18ff2d5b-0767-4a31-a84e-8fcbcbdea271",
+        "timestamp": 1794154040216
+      }
+    ],
+    "4.1 Add the `renderMonthly` function": [
+      {
+        "executionId": "7cd9f8cc-c76b-4a73-b232-ab0944cfca05",
+        "chatSessionId": "sess_18ff2d5b-0767-4a31-a84e-8fcbcbdea271",
+        "timestamp": 1794153563689
+      },
+      {
+        "executionId": "7cd9f8cc-c76b-4a73-b232-ab0944cfca05",
+        "chatSessionId": "sess_18ff2d5b-0767-4a31-a84e-8fcbcbdea271",
+        "timestamp": 1794154046576
+      },
+      {
+        "executionId": "7cd9f8cc-c76b-4a73-b232-ab0944cfca05",
+        "chatSessionId": "sess_18ff2d5b-0767-4a31-a84e-8fcbcbdea271",
+        "timestamp": 1794154117702
+      }
+    ],
+    "4.2 Add `onSwitchTab`, `renderActive`, `onPrevMonth`, and `onNextMonth`": [
+      {
+        "executionId": "7cd9f8cc-c76b-4a73-b232-ab0944cfca05",
+        "chatSessionId": "sess_18ff2d5b-0767-4a31-a84e-8fcbcbdea271",
+        "timestamp": 1794153563851
+      },
+      {
+        "executionId": "7cd9f8cc-c76b-4a73-b232-ab0944cfca05",
+        "chatSessionId": "sess_18ff2d5b-0767-4a31-a84e-8fcbcbdea271",
+        "timestamp": 1794154120841
+      },
+      {
+        "executionId": "7cd9f8cc-c76b-4a73-b232-ab0944cfca05",
+        "chatSessionId": "sess_18ff2d5b-0767-4a31-a84e-8fcbcbdea271",
+        "timestamp": 1794154176484
+      }
+    ],
+    "5.1 Wire the tab buttons and month navigation buttons in `init()`": [
+      {
+        "executionId": "7cd9f8cc-c76b-4a73-b232-ab0944cfca05",
+        "chatSessionId": "sess_18ff2d5b-0767-4a31-a84e-8fcbcbdea271",
+        "timestamp": 1794153563915
+      },
+      {
+        "executionId": "7cd9f8cc-c76b-4a73-b232-ab0944cfca05",
+        "chatSessionId": "sess_18ff2d5b-0767-4a31-a84e-8fcbcbdea271",
+        "timestamp": 1794154179634
+      },
+      {
+        "executionId": "7cd9f8cc-c76b-4a73-b232-ab0944cfca05",
+        "chatSessionId": "sess_18ff2d5b-0767-4a31-a84e-8fcbcbdea271",
+        "timestamp": 1794154218963
+      }
+    ],
+    "6. Checkpoint - Manual verification in the browser": [
+      {
+        "executionId": "7cd9f8cc-c76b-4a73-b232-ab0944cfca05",
+        "chatSessionId": "sess_18ff2d5b-0767-4a31-a84e-8fcbcbdea271",
+        "timestamp": 1794153563986
+      },
+      {
+        "executionId": "7cd9f8cc-c76b-4a73-b232-ab0944cfca05",
+        "chatSessionId": "sess_18ff2d5b-0767-4a31-a84e-8fcbcbdea271",
+        "timestamp": 1794154226934
+      },
+      {
+        "executionId": "7cd9f8cc-c76b-4a73-b232-ab0944cfca05",
+        "chatSessionId": "sess_18ff2d5b-0767-4a31-a84e-8fcbcbdea271",
+        "timestamp": 1794155649686
+      }
+    ],
+    "1. Update HTML structure for tabs and views (index.html)": [
+      {
+        "executionId": "7cd9f8cc-c76b-4a73-b232-ab0944cfca05",
+        "chatSessionId": "sess_18ff2d5b-0767-4a31-a84e-8fcbcbdea271",
+        "timestamp": 1794154040273
+      }
+    ],
+    "2. Add CSS for tabs, monthly grid, and day indicators (styles.css)": [
+      {
+        "executionId": "7cd9f8cc-c76b-4a73-b232-ab0944cfca05",
+        "chatSessionId": "sess_18ff2d5b-0767-4a31-a84e-8fcbcbdea271",
+        "timestamp": 1794154040351
+      }
+    ],
+    "3. Add monthly state, constants, and helpers (app.js)": [
+      {
+        "executionId": "7cd9f8cc-c76b-4a73-b232-ab0944cfca05",
+        "chatSessionId": "sess_18ff2d5b-0767-4a31-a84e-8fcbcbdea271",
+        "timestamp": 1794154040422
+      }
+    ],
+    "4. Add monthly rendering and view switching (app.js)": [
+      {
+        "executionId": "7cd9f8cc-c76b-4a73-b232-ab0944cfca05",
+        "chatSessionId": "sess_18ff2d5b-0767-4a31-a84e-8fcbcbdea271",
+        "timestamp": 1794154176557
+      }
+    ],
+    "5. Wire up tab and month navigation in init (app.js)": [
+      {
+        "executionId": "7cd9f8cc-c76b-4a73-b232-ab0944cfca05",
+        "chatSessionId": "sess_18ff2d5b-0767-4a31-a84e-8fcbcbdea271",
+        "timestamp": 1794154219036
+      }
+    ]
+  }
+}
