@@ -7,6 +7,7 @@ Portfólio de projetos do curso Desenvolvimento com IA na prática, usando o Kir
 | Nº | Projeto | Descrição |
 | --- | --- | --- |
 | 01 | [Habit Tracker](01-habit-tracker/) | App web para registrar hábitos e acompanhar as conclusões dos últimos sete dias. |
+| 02 | [Habit Tracker V2](https://ferreiramcastro.github.io/desenvolvimento-com-ia-kiro/v2/) | App para registrar hábitos e acompanhar o progresso semanal e mensal. |
 
 # Habit Tracker
 
